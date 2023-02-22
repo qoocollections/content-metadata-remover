@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { removeLocation } = require('../../lib/index')
+const { removeMetadata } = require('../../lib/index')
 const util = require('util') 
 const fs = require('fs')
 const awaitableOpen = util.promisify(fs.open)
