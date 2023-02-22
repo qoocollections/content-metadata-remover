@@ -1,17 +1,17 @@
 {
-  "name": "@xoi/gps-metadata-remover",
+  "name": "@qoocollections/content-metadata-remover",
   "version": "1.1.1",
-  "description": "Removes GPS metadata from images and videos",
+  "description": "Removes GPS metadata from images and GPS and datetime from videos (forked by @xoi/gps-metadata-remover)",
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com:xoeye/gps-metadata-remover.git"
+    "url": "ssh://git@github.com:qoocollections/content-metadata-remover.git"
   },
   "main": "lib/index.js",
   "author": "alindner@xoi.io",
   "license": "apache",
-  "homepage": "https://github.com/xoeye/gps-metadata-remover",
+  "homepage": "https://github.com/qoocollections/content-metadata-remover",
   "bugs": {
-    "url": "https://github.com/xoeye/gps-metadata-remover/issues"
+    "url": "https://github.com/qoocollections/content-metadata-remover/issues"
   },
   "files": [
     "lib"
