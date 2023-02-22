@@ -9,7 +9,7 @@ const awaitableWrite = util.promisify(fs.write)
 const awaitableCopy = util.promisify(fs.copyFile)
 const awaitableUnlink = util.promisify(fs.unlink)
 
-const removeLocationFromFile = async(fileName, sourceDirectory, destDirectory) => {
+const removeMetadataFromFile = async(fileName, sourceDirectory, destDirectory) => {
   //const dotIndex = sourcePath.lastIndexOf('.')
   //const tempFileTag = '-noGPS'
   // const tempFilePath = sourcePath.replace(new RegExp(`^(.{${dotIndex}})(.)`), `$1${tempFileTag}$2`)
@@ -31,8 +31,8 @@ const removeLocationFromFile = async(fileName, sourceDirectory, destDirectory) =
     const buffer = Buffer.alloc(writeValue.length, writeValue, encoding)
     await awaitableWrite(fileDescriptor, buffer, 0, writeValue.length, entryOffset)
   }
-  const locationRemoved = await removeLocation(tempFilePath, read, write)
-  if (locationRemoved) {
+  const metadataRemoved = await removeMetadata(tempFilePath, read, write)
+  if (metadataRemoved) {
   console.log('found GPS, wrote stripped file to ', tempFilePath)
   } else {
     console.log('no GPS found')
@@ -40,4 +40,4 @@ const removeLocationFromFile = async(fileName, sourceDirectory, destDirectory) =
   }
 }
 
-exports.removeLocationFromFile = removeLocationFromFile
+exports.removeMetadataFromFile = removeMetadataFromFile

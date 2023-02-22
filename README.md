@@ -1,8 +1,8 @@
-# `@xoi/gps-metadata-remover`
-> Frontend-friendly Javascript package that removes GPS metadata from images and videos
+# `@qoocollections/content-metadata-remover` from `@xoi/gps-metadata-remover`
+> Frontend-friendly Javascript package that removes GPS & datetime metadata from images and videos
 
 Takes a photo or video file and writes over in-place where GPS metadata is detected. Removes
-Exif from images and various forms of GPS metadata from videos.
+Exif from images and various forms of GPS and datetime metadata from videos. 
 
 Currently compatible with JPG, PNG, TIF, MOV, MP4
 
@@ -10,16 +10,16 @@ Currently compatible with JPG, PNG, TIF, MOV, MP4
 
 ## Installation
 
-`yarn add @xoi/gps-metadata-remover` or `npm i @xoi/gps-metadata-remover`
+`yarn add @qoocollections/content-metadata-remover` or `npm i @qoocollections/content-metadata-remover`
 
 ## Usage
 
-`removeLocation` is the main removal function, although some other utility functions
+`removeMetadata` is the main removal function, although some other utility functions
 are provided in the index to help read in data correctly if needed. This is how the package
 looks being used in react native with react-native-fs:
 
 ```javascript
-import { removeLocation, base64StringToArrayBuffer } from '@xoi/gps-metadata-remover'
+import { removeMetadata, base64StringToArrayBuffer } from '@xoi/gps-metadata-remover'
 
 const read = async (size, offset) => {
   const base64Data = await rnfs.read(destPath, size, offset, 'base64')
@@ -28,10 +28,10 @@ const read = async (size, offset) => {
 const write = async (writeValue, entryOffset, encoding) => {
   await rnfs.write(destPath, writeValue, entryOffset, encoding)
 }
-const gpsWasRemoved = await removeLocation(destPath, read, write)
+const metadataRemoved = await removeMetadata(destPath, read, write)
 ```
 
-`removeLocation` returns `true` if GPS metadata was found and rewritten and `false`
+`removeMetadata` returns `true` if GPS metadata was found and rewritten and `false`
 if no GPS metadata was found and nothing was rewritten.
 
 This package is platform-agnostic, so the client is expected to pass in filesystem
@@ -51,10 +51,10 @@ One of the metadata formats from which this package removes metadata is Adobe's 
 
 Currently, if it finds XMP metadata in a file, this package simply wipes the whole of the XMP block rather than just the GPS metadata in that block; this code was originally written under a bit of a time crunch and removing all of the XMP was acceptable since we don't use XMP at all.
 
-If you need to leave XMP intact, pass the optional `options` parameter object to `removeLocation` with `skipXMPRemoval` set to `true`:
+If you need to leave XMP intact, pass the optional `options` parameter object to `removeMetadata` with `skipXMPRemoval` set to `true`:
 
 ```javascript
-const gpsWasRemoved = await removeLocation(destPath, read, write, { skipXMPRemoval })
+const metadataWasRemoved = await removeMetadata(destPath, read, write, { skipXMPRemoval })
 ```
 
 At some point I'll write (or accept a PR for) the logic to properly find and remove just the GPS from XMP and leave the rest.

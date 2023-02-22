@@ -1,8 +1,8 @@
 // @flow
 /* eslint-disable no-await-in-loop */
 
-import { readNextChunkIntoDataView, getEncodedWipeoutString, getWipeoutString } from './gpsRemoverHelpers'
-import type { ReadFunction, WriteFunction } from './gpsRemoverHelpers'
+import { readNextChunkIntoDataView, getEncodedWipeoutString, getWipeoutString } from './metaRemoverHelpers'
+import type { ReadFunction, WriteFunction } from './metaRemoverHelpers'
 
 const EXIF_ASCII_TAG_JPEG = 0x45786966
 const EXIF_ASCII_TAG_PNG = 0x65584966
